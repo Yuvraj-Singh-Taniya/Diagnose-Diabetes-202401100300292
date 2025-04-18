@@ -1,37 +1,126 @@
-# Diagnose-Diabetes-202401100300292
-Overview
-This project aims to predict whether an individual is likely to develop diabetes based on medical records. Using the Pima Indians Diabetes Dataset, we train a Logistic Regression model to classify individuals as diabetic or non-diabetic.
+# Diabetes Diagnosis Using Logistic Regression
 
-Dataset
-Source: Pima Indians Diabetes Dataset (UCI Machine Learning Repository)
+## Project Overview
 
-Features: Includes attributes like glucose, blood pressure, BMI, age, and a diabetes outcome indicator.
+This project focuses on building a supervised machine learning model to predict whether a patient has diabetes based on diagnostic measurements. The dataset used is the well-known Pima Indians Diabetes Dataset, which contains information on various medical parameters for female patients of Pima Indian heritage aged 21 and older.
 
-Target: "Outcome" (1: Diabetic, 0: Non-diabetic)
+The goal is to classify individuals as diabetic or non-diabetic, helping to support early medical intervention and health decision-making.
 
-Methodology
-Data Preprocessing: Load the dataset, handle missing values, split into training and test sets, and standardize features.
+---
 
-Model: Logistic Regression is used to predict diabetes.
+## Problem Statement
 
-Evaluation: Metrics like accuracy, precision, recall, F1-score, and confusion matrix are calculated and visualized.
+Diabetes is a chronic condition that affects how the body processes blood sugar (glucose). Early diagnosis is crucial for effective management and reducing complications. Using machine learning, we aim to predict the presence of diabetes (1 for diabetic, 0 for non-diabetic) using features such as:
 
-Requirements
-Python libraries: pandas, numpy, seaborn, matplotlib, scikit-learn.
+- Number of pregnancies
+- Glucose concentration
+- Blood pressure
+- Skin thickness
+- Insulin levels
+- Body Mass Index (BMI)
+- Diabetes Pedigree Function (a function which scores likelihood of diabetes based on family history)
+- Age
 
-Install via pip: pip install pandas numpy seaborn matplotlib scikit-learn.
+This binary classification task is important for developing tools to assist healthcare providers in diagnosis and resource allocation.
 
-Running the Project
-Clone/download the repo.
+---
 
-Place the dataset (2. Diagnose Diabetes.csv) in the same folder as the notebook.
+## Methodology
 
-Run the notebook (Diabetes Diagnosis.ipynb) in Jupyter or compatible environment to execute the analysis.
+1. **Data Loading and Exploration**:
+   - Load dataset using Pandas.
+   - Examine dataset structure and check for missing/null values.
 
-Results
-The model's performance is evaluated using confusion matrix and classification metrics (accuracy, precision, recall, F1 score).
+2. **Preprocessing**:
+   - Split dataset into features (`X`) and target (`y`).
+   - Perform an 80-20 train-test split using stratification to maintain class distribution.
+   - Standardize features using `StandardScaler` for better model performance.
 
-References
-Dataset: Pima Indians Diabetes Dataset (UCI Machine Learning Repository)
+3. **Model Building**:
+   - Train a Logistic Regression model on the training set.
 
-Libraries: Pandas, NumPy, Seaborn, Matplotlib, Scikit-learn.
+4. **Model Evaluation**:
+   - Evaluate the model on the test set using metrics like:
+     - Accuracy
+     - Precision
+     - Recall
+     - F1-Score
+     - Confusion Matrix
+     - Classification Report
+
+5. **Visualization**:
+   - Generate a confusion matrix heatmap using Seaborn to visually interpret model predictions.
+
+---
+
+## Libraries Used
+
+| Library            | Purpose                                           |
+|--------------------|---------------------------------------------------|
+| `pandas`           | Data loading and manipulation                     |
+| `matplotlib.pyplot`| Plotting graphs and figures                       |
+| `seaborn`          | Creating attractive statistical plots (heatmap)   |
+| `scikit-learn`     | Machine learning utilities, preprocessing, models |
+
+---
+
+## Algorithm Used: Logistic Regression
+
+Logistic Regression is a linear model used for binary classification tasks. It calculates the probability of a data point belonging to a particular class using the logistic (sigmoid) function. In this context, it models the probability that a patient has diabetes given their medical measurements.
+
+It was chosen for this problem due to its:
+- Interpretability
+- Efficiency with small-to-medium datasets
+- Suitability for binary outcomes
+
+Hyperparameters:
+- `max_iter = 200` to ensure convergence during training
+
+---
+
+## Results and Evaluation
+
+
+
+**Explanation**:
+- True Negatives (87): Correctly predicted as non-diabetic
+- False Positives (13): Predicted diabetic but are not
+- False Negatives (18): Predicted non-diabetic but are diabetic
+- True Positives (36): Correctly predicted as diabetic
+
+### Evaluation Metrics
+
+| Metric     | Value   |
+|------------|---------|
+| Accuracy   | 0.798    |
+| Precision  | 0.7347   |
+| Recall     | 0.6667   |
+| F1 Score   | 0.6981   |
+
+### Classification Report
+
+          precision    recall  f1-score   support
+accuracy                           0.80       154
+
+**Interpretation**:
+- The model performs slightly better at predicting non-diabetic individuals.
+- The precision and recall values indicate a balanced performance across classes.
+
+---
+
+## Dataset Reference
+
+- **Dataset**: Pima Indians Diabetes Dataset
+- **Source**: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/diabetes)
+
+---
+
+## Conclusion
+
+This project demonstrates how logistic regression can be effectively used to classify individuals as diabetic or non-diabetic based on medical measurements. While performance is reasonable, future improvements could involve:
+- Trying more advanced models like Random Forest or XGBoost
+- Handling potential outliers or missing values
+- Performing feature selection or engineering
+- Applying cross-validation for more reliable evaluation
+
+
